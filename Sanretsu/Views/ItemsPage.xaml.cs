@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using ZXing.Net.Mobile.Forms;
 
 namespace Sanretsu
 {
@@ -19,6 +20,12 @@ namespace Sanretsu
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
+            var scanPage = new ZXingScannerPage();
+            // Navigate to our scanner page
+            await Navigation.PushAsync(scanPage);
+            return;
+
+
             var item = args.SelectedItem as Item;
             if (item == null)
                 return;

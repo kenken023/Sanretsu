@@ -23,6 +23,8 @@ namespace Sanretsu.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             LoadApplication(new App());
+
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
