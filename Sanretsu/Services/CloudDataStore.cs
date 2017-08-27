@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 using Plugin.Connectivity;
+using Sanretsu.Models;
 
 namespace Sanretsu
 {
@@ -24,6 +25,17 @@ namespace Sanretsu
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        {
+            if (forceRefresh && CrossConnectivity.Current.IsConnected)
+            {
+                var json = await client.GetStringAsync($"api/item");
+                items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Item>>(json));
+            }
+
+            return items;
+        }
+
+        public async Task<IEnumerable<Item>> GetAttendancesAsync(bool forceRefresh = false)
         {
             if (forceRefresh && CrossConnectivity.Current.IsConnected)
             {
