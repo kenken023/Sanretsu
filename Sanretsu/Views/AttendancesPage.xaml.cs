@@ -35,5 +35,10 @@ namespace Sanretsu.Views
         {
             ItemsListView.SelectedItem = null;
         }
+
+        public void OnCopyClicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
