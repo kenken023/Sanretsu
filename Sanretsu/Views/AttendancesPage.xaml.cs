@@ -1,4 +1,5 @@
-﻿using Sanretsu.ViewModels;
+﻿using Sanretsu.Dependencies;
+using Sanretsu.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,12 @@ namespace Sanretsu.Views
 
         public void OnCopyClicked(object sender, EventArgs e)
         {
+            var codes = viewModel.Items.Select(item =>
+            {
+                return item.Code;
+            }).ToArray();
 
+            DependencyService.Get<ICopyToClipboard>().Copy(String.Join(",", codes));
         }
     }
 }
