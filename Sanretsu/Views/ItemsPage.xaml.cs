@@ -30,10 +30,10 @@ namespace Sanretsu
             }
 
             await Navigation.PushAsync(new AttendancesPage());
-            return;
+            ItemsListView.SelectedItem = null;
 
             // Manually deselect item
-            ItemsListView.SelectedItem = null;
+            //ItemsListView.SelectedItem = null;
 
             //var scanPage = new ZXingScannerPage();
             //// Navigate to our scanner page

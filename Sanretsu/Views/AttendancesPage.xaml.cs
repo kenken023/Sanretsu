@@ -30,5 +30,10 @@ namespace Sanretsu.Views
                 viewModel.LoadItemsCommand.Execute(null);
             }
         }
+
+        public void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            ItemsListView.SelectedItem = null;
+        }
     }
 }
