@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Sanretsu.Models;
+using Xamarin.Forms;
 
 namespace Sanretsu
 {

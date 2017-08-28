@@ -1,42 +1,40 @@
 ﻿using Sanretsu.Models;
 using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-
+using System.Collections.Generic;
+using System.Text;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using System.Diagnostics;
 
-namespace Sanretsu
+namespace Sanretsu.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class AttendancesViewModel : BaseViewModel
     {
+ 
         public ObservableRangeCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        public ItemsViewModel()
+        public AttendancesViewModel()
         {
-            Title = "Browse";
+            Title = "Attendance List";
             Items = new ObservableRangeCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
-            {
-                var _item = item as Item;
-                Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
-            });
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
+            {
                 return;
+            }
 
             IsBusy = true;
 
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                var items = await DataStore.GetAttendancesAsync();
                 Items.ReplaceRange(items);
             }
             catch (Exception ex)

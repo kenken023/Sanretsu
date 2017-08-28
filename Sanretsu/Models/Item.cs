@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-namespace Sanretsu
+namespace Sanretsu.Models
 {
     public class Item : ObservableObject
     {
@@ -13,6 +13,13 @@ namespace Sanretsu
         {
             get { return id; }
             set { SetProperty(ref id, value); }
+        }
+
+        string code = string.Empty;
+        public string Code
+        {
+            get { return code;  }
+            set { SetProperty(ref code, value); }
         }
 
         string text = string.Empty;

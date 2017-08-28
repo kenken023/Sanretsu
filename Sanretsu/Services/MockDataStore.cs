@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sanretsu.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,12 +16,12 @@ namespace Sanretsu
             items = new List<Item>();
             var _items = new List<Item>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is a nice description"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is a nice description", Code="00806906"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is a nice description", Code="12345"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is a nice description", Code="0987" },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is a nice description", Code="Code-128"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is a nice description", Code="Codabar"},
             };
 
             foreach (Item item in _items)
@@ -59,6 +60,11 @@ namespace Sanretsu
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(items);
+        }
+
+        public async Task<IEnumerable<Item>> GetAttendancesAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }

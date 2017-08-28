@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Sanretsu.Views;
+using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -16,9 +17,13 @@ namespace Sanretsu
             InitializeComponent();
 
             if (UseMockDataStore)
+            {
                 DependencyService.Register<MockDataStore>();
+            }
             else
+            {
                 DependencyService.Register<CloudDataStore>();
+            }
 
             SetMainPage();
         }
@@ -49,11 +54,16 @@ namespace Sanretsu
                         Title = "Browse",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
+                    new NavigationPage(new ScanPage())
+                    {
+                        Title = "Scan",
+                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                    },
                     new NavigationPage(new AboutPage())
                     {
                         Title = "About",
                         Icon = Device.OnPlatform("tab_about.png", null, null)
-                    },
+                    }
                 }
             };
         }
