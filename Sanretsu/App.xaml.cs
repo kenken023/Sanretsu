@@ -54,7 +54,7 @@ namespace Sanretsu
                         Title = "Browse",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
-                    new NavigationPage(new ScanPage())
+                    new NavigationPage(new AddEventPage())
                     {
                         Title = "Scan",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
