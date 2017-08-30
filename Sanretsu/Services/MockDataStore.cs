@@ -10,14 +10,33 @@ namespace Sanretsu
     {
         bool isInitialized;
         List<Item> items;
+        List<Event> events;
 
         public MockDataStore()
         {
+            events = new List<Event>
+            {
+                new Event { Id = Guid.NewGuid().ToString(), Name = "First Event", Description = "This is First Event", DateTime = DateTime.Now },
+                new Event { Id = Guid.NewGuid().ToString(), Name = "Second Event", Description = "This is Second Event", DateTime = DateTime.Now },
+                new Event { Id = Guid.NewGuid().ToString(), Name = "Third Event", Description = "This is Third Event", DateTime = DateTime.Now },
+                new Event { Id = Guid.NewGuid().ToString(), Name = "Fourth Event", Description = "This is Fourth Event", DateTime = DateTime.Now },
+                new Event { Id = Guid.NewGuid().ToString(), Name = "Fifth Event", Description = "This is Fifth Event", DateTime = DateTime.Now }
+            };
+
             items = new List<Item>();
             var _items = new List<Item>
             {
                 new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is a nice description", Code="00806906"},
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is a nice description", Code="12345"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is a nice description", Code="0987" },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is a nice description", Code="Code-128"},
@@ -67,6 +86,11 @@ namespace Sanretsu
         public async Task<IEnumerable<Item>> GetAttendancesAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
+        }
+
+        public async Task<IEnumerable<Event>> GetEventsAsync(bool forceRefresh = false)
+        {
+            return await Task.FromResult(events);
         }
     }
 }

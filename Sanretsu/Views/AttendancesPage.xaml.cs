@@ -1,4 +1,6 @@
-﻿using Sanretsu.ViewModels;
+﻿using Sanretsu.Dependencies;
+using Sanretsu.Models;
+using Sanretsu.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,29 @@ namespace Sanretsu.Views
             {
                 viewModel.LoadItemsCommand.Execute(null);
             }
+        }
+        public void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            Item item = args.SelectedItem as Item;
+            if (item == null)
+            {
+                return;
+            }
+
+            ItemDetailViewModel model = new ItemDetailViewModel(item);
+
+            Navigation.PushAsync(new ItemDetailPage(model));
+            ItemsListView.SelectedItem = null;
+        }
+
+        public void OnCopyClicked(object sender, EventArgs e)
+        {
+            var codes = viewModel.Items.Select(item =>
+            {
+                return item.Code;
+            }).ToArray();
+
+            DependencyService.Get<ICopyToClipboard>().Copy(String.Join("\n", codes));
         }
     }
 }

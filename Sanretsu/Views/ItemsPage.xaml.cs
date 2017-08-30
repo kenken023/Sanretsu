@@ -1,12 +1,8 @@
 ﻿using Sanretsu.Models;
-using Sanretsu.ViewModels;
 using Sanretsu.Views;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using ZXing.Net.Mobile.Forms;
 
 namespace Sanretsu
 {
@@ -23,32 +19,14 @@ namespace Sanretsu
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
+            var item = args.SelectedItem as Event;
             if (item == null)
             {
                 return;
             }
 
             await Navigation.PushAsync(new AttendancesPage());
-            return;
-
-            // Manually deselect item
             ItemsListView.SelectedItem = null;
-
-            //var scanPage = new ZXingScannerPage();
-            //// Navigate to our scanner page
-            //await Navigation.PushAsync(scanPage);
-            //return;
-
-
-            //var item = args.SelectedItem as Item;
-            //if (item == null)
-            //    return;
-
-            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
-
-            //// Manually deselect item
-            //ItemsListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)

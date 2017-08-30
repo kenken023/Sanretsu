@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Sanretsu.ViewModels
 {
-    public class AttendancesViewModel : BaseViewModel
+    public class AttendancesViewModel : BaseViewModel<Item>
     {
  
         public ObservableRangeCollection<Item> Items { get; set; }
@@ -34,7 +34,7 @@ namespace Sanretsu.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetAttendancesAsync();
+                var items = await DataStore.GetItemsAsync();
                 Items.ReplaceRange(items);
             }
             catch (Exception ex)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZXing.Net.Mobile.Forms;
 
 namespace Sanretsu.Views
 {
@@ -15,6 +16,13 @@ namespace Sanretsu.Views
 		public ScanPage ()
 		{
 			InitializeComponent ();
-		}
-	}
+            ShowScanner();
+        }
+
+        public async void ShowScanner()
+        {
+            var scanPage = new ZXingScannerPage();
+            await Navigation.PushAsync(scanPage);
+        }
+    }
 }

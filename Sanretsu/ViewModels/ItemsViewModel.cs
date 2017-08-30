@@ -7,20 +7,20 @@ using Xamarin.Forms;
 
 namespace Sanretsu
 {
-    public class ItemsViewModel : BaseViewModel
+    public class ItemsViewModel : BaseViewModel<Event>
     {
-        public ObservableRangeCollection<Item> Items { get; set; }
+        public ObservableRangeCollection<Event> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         public ItemsViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableRangeCollection<Item>();
+            Title = "Events";
+            Items = new ObservableRangeCollection<Event>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewItemPage, Event>(this, "AddItem", async (obj, item) =>
             {
-                var _item = item as Item;
+                var _item = item as Event;
                 Items.Add(_item);
                 await DataStore.AddItemAsync(_item);
             });
