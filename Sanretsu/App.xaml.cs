@@ -19,6 +19,7 @@ namespace Sanretsu
             if (UseMockDataStore)
             {
                 DependencyService.Register<MockDataStore>();
+                DependencyService.Register<EventDataStore>();
             }
             else
             {
@@ -51,12 +52,12 @@ namespace Sanretsu
                 Children = {
                     new NavigationPage(new ItemsPage())
                     {
-                        Title = "Browse",
+                        Title = "Events",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
-                    new NavigationPage(new AddEventPage())
+                    new NavigationPage(new SettingsPage())
                     {
-                        Title = "Scan",
+                        Title = "Settings",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
                     new NavigationPage(new AboutPage())

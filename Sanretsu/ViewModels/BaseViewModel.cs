@@ -3,12 +3,12 @@ using Xamarin.Forms;
 
 namespace Sanretsu
 {
-    public class BaseViewModel : ObservableObject
+    public class BaseViewModel<T> : ObservableObject
     {
         /// <summary>
         /// Get the azure service instance
         /// </summary>
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<T> DataStore => DependencyService.Get<IDataStore<T>>();
 
         bool isBusy = false;
         public bool IsBusy

@@ -1,4 +1,5 @@
 ﻿using Sanretsu.Dependencies;
+using Sanretsu.Models;
 using Sanretsu.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,15 @@ namespace Sanretsu.Views
 
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
+            Item item = args.SelectedItem as Item;
+            if (item == null)
+            {
+                return;
+            }
+
+            ItemDetailViewModel model = new ItemDetailViewModel(item);
+
+            Navigation.PushAsync(new ItemDetailPage(model));
             ItemsListView.SelectedItem = null;
         }
 

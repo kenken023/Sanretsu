@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using Sanretsu.Models;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Xamarin.Forms;
 
 namespace Sanretsu
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel<Item>
     {
         public LoginViewModel()
         {
