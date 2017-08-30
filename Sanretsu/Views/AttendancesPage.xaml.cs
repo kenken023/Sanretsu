@@ -32,7 +32,6 @@ namespace Sanretsu.Views
                 viewModel.LoadItemsCommand.Execute(null);
             }
         }
-
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             Item item = args.SelectedItem as Item;
@@ -54,7 +53,7 @@ namespace Sanretsu.Views
                 return item.Code;
             }).ToArray();
 
-            DependencyService.Get<ICopyToClipboard>().Copy(String.Join(",", codes));
+            DependencyService.Get<ICopyToClipboard>().Copy(String.Join("\n", codes));
         }
     }
 }
