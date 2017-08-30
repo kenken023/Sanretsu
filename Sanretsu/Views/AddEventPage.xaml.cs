@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ZXing;
+using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
 
 namespace Sanretsu.Views
@@ -14,121 +15,53 @@ namespace Sanretsu.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddEventPage : ContentPage
     {
-        ZXingScannerView zxing;
-        ZXingDefaultOverlay overlay;
-        private Grid _grid;
 
-        public AddEventPage ()
+        public AddEventPage()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 
-            //zxing = new ZXingScannerView
-            //{
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    VerticalOptions = LayoutOptions.FillAndExpand
-            //};
+        }
 
-            //overlay = new ZXingDefaultOverlay
-            //{
-            //    TopText = "Hold your phone up to the barcode",
-            //    BottomText = "Scanning will happen automatically",
-            //    ShowFlashButton = zxing.HasTorch,
-            //};
-            //zxing.IsScanning = false;
+        private void OnScanClicked()
+        {
+            this.InitScanner();
+        }
 
-            //zxing.OnScanResult += this.OnScanResult;
-
-
-
-            zxing = new ZXingScannerView
+        private async Task InitScanner()
+        {
+            var options = new MobileBarcodeScanningOptions
             {
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalOptions = LayoutOptions.FillAndExpand
+                AutoRotate = false,
+                TryInverted = true,
+                TryHarder = true
             };
-            zxing.OnScanResult += (result) =>
-                Device.BeginInvokeOnMainThread(async () => {
-
-                    // Stop analysis until we navigate away so we don't keep reading barcodes
-                    zxing.IsAnalyzing = false;
-
-                    // Show an alert
+            var scanPage = new ZXingScannerPage(options)
+            {
+                DefaultOverlayTopText = "Align the barcode within the frame",
+                DefaultOverlayBottomText = string.Empty,
+                DefaultOverlayShowFlashButton = true
+            };
+            // Navigate to our scanner page
+            
+            scanPage.OnScanResult += (result) => 
+            {
+                // Stop scanning
+                scanPage.IsScanning = false;
+ 
+                // Pop the page and show the result
+                Device.BeginInvokeOnMainThread (async () => 
+                {
+                    await Navigation.PopAsync();        
                     await DisplayAlert("Scanned Barcode", result.Text, "OK");
-
-                    // Navigate away
-                    await Navigation.PopAsync();
                 });
-
-            overlay = new ZXingDefaultOverlay
-            {
-                TopText = "Hold your phone up to the barcode",
-                BottomText = "Scanning will happen automatically",
-                ShowFlashButton = zxing.HasTorch,
             };
-            overlay.FlashButtonClicked += (sender, e) => {
-                zxing.IsTorchOn = !zxing.IsTorchOn;
-            };
-            var grid = new Grid
-            {
-                VerticalOptions = LayoutOptions.FillAndExpand,
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-            };
-            grid.Children.Add(zxing);
-            grid.Children.Add(overlay);
-
-            // The root page of your application
-            Content = grid;
+            await Navigation.PushAsync(scanPage);
         }
 
         private void OnScanResult(Result result)
         {
             this.Code.Text = result.Text;
             this.Type.Text = result.BarcodeFormat.ToString();
-        }
-
-        private void OnScanClicked(object sender, EventArgs e)
-        {
-            if (!zxing.IsScanning)
-            {
-                if (_grid == null)
-                {
-                    _grid = new Grid
-                    {
-                        VerticalOptions = LayoutOptions.FillAndExpand,
-                        HorizontalOptions = LayoutOptions.FillAndExpand,
-                    };
-                    _grid.Children.Add(zxing);
-                    _grid.Children.Add(overlay);
-                    StackContainer.Children.Add(_grid);
-                }
-
-                StackContainer.Children.Add(_grid);
-                zxing.IsScanning = true;
-            }
-            else
-            {
-                StackContainer.Children.RemoveAt(StackContainer.Children.Count - 1);
-                zxing.IsScanning = false;
-            }
-
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            zxing.IsScanning = true;
-        }
-
-        protected override void OnDisappearing()
-        {
-            zxing.IsScanning = false;
-
-            base.OnDisappearing();
-        }
-
-        ~AddEventPage()
-        {
-            //zxing.OnScanResult -= this.OnScanResult;
         }
     }
 }
