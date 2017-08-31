@@ -18,13 +18,12 @@ namespace Sanretsu.Views
 
         public AddEventPage()
 		{
-			InitializeComponent();
-
+            InitializeComponent();
         }
 
-        private void OnScanClicked()
+        private async void OnScanClicked()
         {
-            this.InitScanner();
+            await this.InitScanner();
         }
 
         private async Task InitScanner()

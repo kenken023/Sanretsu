@@ -53,6 +53,11 @@ namespace Sanretsu
                     new NavigationPage(new ItemsPage())
                     {
                         Title = "Events",
+                        Icon = Device.OnPlatform("tab_feed.png", null, null),
+
+                    },
+                    new NavigationPage(new ScanPage()) {
+                        Title = "Test Scan",
                         Icon = Device.OnPlatform("tab_feed.png", null, null)
                     },
                     new NavigationPage(new SettingsPage())
