@@ -55,5 +55,10 @@ namespace Sanretsu.Views
 
             DependencyService.Get<ICopyToClipboard>().Copy(String.Join("\n", codes));
         }
+
+        private void ScanItemClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddEventPage());
+        }
     }
 }
