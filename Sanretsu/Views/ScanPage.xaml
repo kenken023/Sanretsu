@@ -1,10 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sanretsu.Views.ScanPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
+	<ContentPage.Content>
+        <StackLayout x:Name="StackContainer" Margin="10">
+            <Frame OutlineColor="Black" Margin="0,10,0,20" CornerRadius="0" HasShadow="false">
+                <StackLayout>
+                    <Label x:Name="Code" Text="Code" />
+                    <Label x:Name="Type" Text="Barcode Type" />
+                </StackLayout>
+            </Frame>
         </StackLayout>
-    </ContentPage.Content>
+	</ContentPage.Content>
 </ContentPage>

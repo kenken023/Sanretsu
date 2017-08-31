@@ -5,12 +5,13 @@ using System.Text;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using Sanretsu.Views;
 
 namespace Sanretsu.ViewModels
 {
     public class AttendancesViewModel : BaseViewModel<Item>
     {
- 
+
         public ObservableRangeCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
@@ -20,6 +21,19 @@ namespace Sanretsu.ViewModels
             Items = new ObservableRangeCollection<Item>();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+			MessagingCenter.Subscribe<AddEventPage, Item>(this, "AddItem", async (obj, item) =>
+			{
+				var _item = item as Item;
+
+                var existingItem = await DataStore.GetItemAsync(_item.Id);
+
+                if (existingItem == null || existingItem.Id != _item.Id)
+                {
+                    Items.Add(_item);
+                    await DataStore.AddItemAsync(_item);
+                }
+			});
         }
 
         private async Task ExecuteLoadItemsCommand()
