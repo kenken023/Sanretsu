@@ -245,6 +245,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Dependencies\FileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />

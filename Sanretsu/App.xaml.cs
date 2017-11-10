@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Sanretsu.Models;
+using Sanretsu.Dependencies;
 
 namespace Sanretsu
 {
@@ -9,6 +11,7 @@ namespace Sanretsu
     {
         public static bool UseMockDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
+        static TodoItemDatabase database;
 
         public static IDictionary<string, string> LoginParameters => null;
 
@@ -25,6 +28,12 @@ namespace Sanretsu
             {
                 DependencyService.Register<CloudDataStore>();
             }
+
+            Database.DeleteItemAsync(new TodoItem()
+            {
+                Name = "Koken",
+                Address = "Bontoc"
+            });
 
             SetMainPage();
         }
@@ -72,6 +81,18 @@ namespace Sanretsu
                     }
                 }
             };
+        }
+
+        public static TodoItemDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new TodoItemDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return database;
+            }
         }
     }
 }

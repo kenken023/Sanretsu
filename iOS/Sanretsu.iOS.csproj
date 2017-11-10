@@ -236,6 +236,7 @@
     <Compile Include="Dependencies\CopyToClipboard.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Dependencies\FileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
