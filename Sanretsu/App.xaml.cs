@@ -62,22 +62,22 @@ namespace Sanretsu
                     new NavigationPage(new ItemsPage())
                     {
                         Title = "Events",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null),
+                        Icon = "tab_feed.png"
 
                     },
                     new NavigationPage(new ScanPage()) {
                         Title = "Test Scan",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                        Icon = "tab_feed.png"
                     },
                     new NavigationPage(new SettingsPage())
                     {
                         Title = "Settings",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                        Icon = "tab_feed.png"
                     },
                     new NavigationPage(new AboutPage())
                     {
                         Title = "About",
-                        Icon = Device.OnPlatform("tab_about.png", null, null)
+                        Icon = "tab_about.png"
                     }
                 }
             };
