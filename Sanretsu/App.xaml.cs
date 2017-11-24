@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using Sanretsu.Models;
+using Sanretsu.Dependencies;
 
 namespace Sanretsu
 {
@@ -9,6 +11,7 @@ namespace Sanretsu
     {
         public static bool UseMockDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
+        static TodoItemDatabase database;
 
         public static IDictionary<string, string> LoginParameters => null;
 
@@ -25,6 +28,12 @@ namespace Sanretsu
             {
                 DependencyService.Register<CloudDataStore>();
             }
+
+            Database.DeleteItemAsync(new TodoItem()
+            {
+                Name = "Koken",
+                Address = "Bontoc"
+            });
 
             SetMainPage();
         }
@@ -53,25 +62,37 @@ namespace Sanretsu
                     new NavigationPage(new ItemsPage())
                     {
                         Title = "Events",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null),
+                        Icon = "tab_feed.png"
 
                     },
                     new NavigationPage(new ScanPage()) {
                         Title = "Test Scan",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                        Icon = "tab_feed.png"
                     },
                     new NavigationPage(new SettingsPage())
                     {
                         Title = "Settings",
-                        Icon = Device.OnPlatform("tab_feed.png", null, null)
+                        Icon = "tab_feed.png"
                     },
                     new NavigationPage(new AboutPage())
                     {
                         Title = "About",
-                        Icon = Device.OnPlatform("tab_about.png", null, null)
+                        Icon = "tab_about.png"
                     }
                 }
             };
+        }
+
+        public static TodoItemDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new TodoItemDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
+                }
+                return database;
+            }
         }
     }
 }
