@@ -19,7 +19,6 @@ namespace Sanretsu
 
         public static bool UseSqliteDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
-        static TodoItemDatabase database;
 
         public static IDictionary<string, string> LoginParameters => null;
 
@@ -84,18 +83,6 @@ namespace Sanretsu
                     }
                 }
             };
-        }
-
-        public static TodoItemDatabase Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new TodoItemDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("TodoSQLite.db3"));
-                }
-                return database;
-            }
         }
 
         public static EventDatabase EventDb

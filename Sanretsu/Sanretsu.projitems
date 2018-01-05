@@ -54,8 +54,6 @@
       <DependentUpon>ScanPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Dependencies\IFileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItemDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Attendance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AttendanceDatabase.cs" />
