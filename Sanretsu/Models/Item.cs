@@ -6,10 +6,10 @@ namespace Sanretsu.Models
 {
     public class Item : ObservableObject
     {
-        string id = string.Empty;
+        int id;
 
         [JsonIgnore]
-        public string Id
+        public int Id
         {
             get { return id; }
             set { SetProperty(ref id, value); }

@@ -46,7 +46,7 @@ namespace Sanretsu
             return items;
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Item> GetItemAsync(int id)
         {
             if (id != null && CrossConnectivity.Current.IsConnected)
             {
@@ -83,9 +83,9 @@ namespace Sanretsu
             return response.IsSuccessStatusCode ? true : false;
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
-            if (string.IsNullOrEmpty(id) && !CrossConnectivity.Current.IsConnected)
+            if (id == 0 && !CrossConnectivity.Current.IsConnected)
                 return false;
 
             var response = await client.DeleteAsync($"api/item/{id}");

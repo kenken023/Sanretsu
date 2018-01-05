@@ -10,6 +10,8 @@ namespace Sanretsu
 {
     public partial class App : Application
     {
+        private const string DATABASE_NAME = "Sanretsu.db3";
+        
         private static EventDatabase _eventDatabase;
         private static AttendanceDatabase _attendanceDatabase;
 
@@ -100,7 +102,7 @@ namespace Sanretsu
             {
                 if (_eventDatabase == null)
                 {
-                    _eventDatabase = new EventDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("Sanretsu.db3"));
+                    _eventDatabase = new EventDatabase(GetLocalDatabase());
                 }
 
                 return _eventDatabase;
@@ -113,11 +115,16 @@ namespace Sanretsu
             {
                 if (_attendanceDatabase == null)
                 {
-                    _attendanceDatabase = new AttendanceDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath(("Sanretsu.db3")));
+                    _attendanceDatabase = new AttendanceDatabase(GetLocalDatabase());
                 }
 
                 return _attendanceDatabase;
             }
+        }
+
+        private static string GetLocalDatabase()
+        {
+            return DependencyService.Get<IFileHelper>().GetLocalFilePath((DATABASE_NAME));
         }
 
     }

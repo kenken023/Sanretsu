@@ -8,7 +8,6 @@ namespace Sanretsu
 {
     public class MockDataStore : IDataStore<Item>
     {
-        bool isInitialized;
         List<Item> items;
         List<Event> events;
 
@@ -26,21 +25,16 @@ namespace Sanretsu
             items = new List<Item>();
             var _items = new List<Item>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is a nice description", Code="00806906"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is a nice description", Code="12345"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description", Code="09009"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is a nice description", Code="0987" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is a nice description", Code="Code-128"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is a nice description", Code="Codabar"},
+                new Item { Id = 1, Text = "First item", Description="This is a nice description", Code="00806906"},
+                new Item { Id = 2, Text = "Second item", Description="This is a nice description", Code="12345"},
+                new Item { Id = 3, Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = 4, Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = 5, Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = 6, Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = 7, Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = 8, Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = 9, Text = "Third item", Description="This is a nice description", Code="09009"},
+                new Item { Id = 10, Text = "Sixth item", Description="This is a nice description", Code="Codabar"},
             };
 
             foreach (Item item in _items)
@@ -65,7 +59,7 @@ namespace Sanretsu
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
             var _item = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
             items.Remove(_item);
@@ -73,7 +67,7 @@ namespace Sanretsu
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Item> GetItemAsync(int id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }

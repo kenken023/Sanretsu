@@ -51,7 +51,6 @@ namespace Sanretsu.Services
         }
 
 
-
         public async Task<bool> DeleteItemAsync(string id)
         {
             throw new Exception("Not implemented.");
