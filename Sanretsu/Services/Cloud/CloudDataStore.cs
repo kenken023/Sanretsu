@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Sanretsu.Models;
 
-namespace Sanretsu
+namespace Sanretsu.Services.Cloud
 {
     public class CloudDataStore : IDataStore<Item>
     {

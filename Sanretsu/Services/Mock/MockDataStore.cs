@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sanretsu
+namespace Sanretsu.Services.Mock
 {
     public class MockDataStore : IDataStore<Item>
     {

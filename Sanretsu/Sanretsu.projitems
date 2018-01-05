@@ -16,10 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MessagingCenterAlert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Event.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\CloudDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\EventDataStore.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AttendancesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
@@ -61,8 +58,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\EventDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Attendance.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\AttendanceDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\AttendanceDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Database\AttendanceDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Database\EventDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Cloud\CloudDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Mock\MockDataStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />
@@ -90,5 +90,10 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AddEventPage.xaml">
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Database\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Cloud\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\Mock\" />
   </ItemGroup>
 </Project>

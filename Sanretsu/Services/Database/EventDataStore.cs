@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sanretsu.Services
+namespace Sanretsu.Services.Database
 {
     public class EventDataStore : IDataStore<Event>
     {

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Sanretsu.Models;
 using Sanretsu.Dependencies;
-using Sanretsu.Services;
+using Sanretsu.Services.Database;
+using Sanretsu.Services.Cloud;
+using Sanretsu.Services.Mock;
 
 namespace Sanretsu
 {
