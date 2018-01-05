@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Sanretsu.NewItemPage" Title="New Item">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem Text="Save" Clicked="Save_Clicked" />
@@ -9,6 +9,9 @@
 			<Entry Text="{Binding Item.Name}" FontSize="Small" />
 			<Label Text="Description" FontSize="Medium" />
 			<Editor Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
+            <Label Text="Date and Time" FontSize="Medium" />
+            <DatePicker Date="{Binding Path=Item.DateTime}" />
+            <TimePicker Time="{Binding Path=Item.DateTime}" />
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

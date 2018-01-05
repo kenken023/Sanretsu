@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Sanretsu.Models;
 using Sanretsu.Dependencies;
+using System;
 
 namespace Sanretsu
 {
     public partial class App : Application
     {
-        public static bool UseMockDataStore = true;
+        private static EventDatabase _eventDatabase;
+
+        public static bool UseSqliteDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
         static TodoItemDatabase database;
 
@@ -19,7 +22,7 @@ namespace Sanretsu
         {
             InitializeComponent();
 
-            if (UseMockDataStore)
+            if (UseSqliteDataStore)
             {
                 DependencyService.Register<MockDataStore>();
                 DependencyService.Register<EventDataStore>();
@@ -29,18 +32,19 @@ namespace Sanretsu
                 DependencyService.Register<CloudDataStore>();
             }
 
-            Database.DeleteItemAsync(new TodoItem()
-            {
-                Name = "Koken",
-                Address = "Bontoc"
-            });
+            //EventDb.SaveItemAsync(new Event() {
+            //    Id = 0,
+            //    Name = "First Event",
+            //    Description = "First Description",
+            //    DateTime = DateTime.Now
+            //});
 
             SetMainPage();
         }
 
         public static void SetMainPage()
         {
-            if (!UseMockDataStore && !Settings.IsLoggedIn)
+            if (!UseSqliteDataStore && !Settings.IsLoggedIn)
             {
                 Current.MainPage = new NavigationPage(new LoginPage())
                 {
@@ -94,5 +98,19 @@ namespace Sanretsu
                 return database;
             }
         }
+
+        public static EventDatabase EventDb
+        {
+            get
+            {
+                if (_eventDatabase == null)
+                {
+                    _eventDatabase = new EventDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath("Sanretsu.db3"));
+                }
+
+                return _eventDatabase;
+            }
+        }
+
     }
 }

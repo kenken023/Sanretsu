@@ -6,10 +6,10 @@ namespace Sanretsu.Models
 {
     public class Event: ObservableObject
     {
-        string id = string.Empty;
+        int id = 0;
 
         [JsonIgnore]
-        public string Id
+        public int Id
         {
             get { return id; }
             set { SetProperty(ref id, value); }

@@ -16,11 +16,11 @@ namespace Sanretsu
         {
             events = new List<Event>
             {
-                new Event { Id = Guid.NewGuid().ToString(), Name = "First Event", Description = "This is First Event", DateTime = DateTime.Now },
-                new Event { Id = Guid.NewGuid().ToString(), Name = "Second Event", Description = "This is Second Event", DateTime = DateTime.Now },
-                new Event { Id = Guid.NewGuid().ToString(), Name = "Third Event", Description = "This is Third Event", DateTime = DateTime.Now },
-                new Event { Id = Guid.NewGuid().ToString(), Name = "Fourth Event", Description = "This is Fourth Event", DateTime = DateTime.Now },
-                new Event { Id = Guid.NewGuid().ToString(), Name = "Fifth Event", Description = "This is Fifth Event", DateTime = DateTime.Now }
+                new Event { Id = 1, Name = "First Event", Description = "This is First Event", DateTime = DateTime.Now },
+                new Event { Id = 2, Name = "Second Event", Description = "This is Second Event", DateTime = DateTime.Now },
+                new Event { Id = 3, Name = "Third Event", Description = "This is Third Event", DateTime = DateTime.Now },
+                new Event { Id = 4, Name = "Fourth Event", Description = "This is Fourth Event", DateTime = DateTime.Now },
+                new Event { Id = 5, Name = "Fifth Event", Description = "This is Fifth Event", DateTime = DateTime.Now }
             };
 
             items = new List<Item>();

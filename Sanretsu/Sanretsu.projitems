@@ -59,6 +59,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dependencies\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItemDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\TodoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\EventDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml" />

@@ -23,18 +23,6 @@ namespace Sanretsu
                 var _item = item as Event;
                 Items.Add(_item);
                 await DataStore.AddItemAsync(_item);
-
-                var todoItem = new TodoItem()
-                {
-                    Name = "Fritz",
-                    Address = "Sogod"
-                };
-
-                await App.Database.SaveItemAsync(todoItem);
-
-                var items = await App.Database.GetItemsAsync();
-
-                Debug.WriteLine(items);
             });
         }
 
@@ -50,6 +38,7 @@ namespace Sanretsu
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 Items.ReplaceRange(items);
+
             }
             catch (Exception ex)
             {

@@ -16,8 +16,9 @@ namespace Sanretsu
 
             Item = new Event
             {
-                Name = "Item name",
-                Description = "This is a nice description"
+                Name = "Event name",
+                Description = "Description here",
+                DateTime = DateTime.Now
             };
 
             BindingContext = this;

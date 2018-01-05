@@ -20,11 +20,6 @@ namespace Sanretsu.Models
             return database.Table<TodoItem>().ToListAsync();
         }
 
-        public Task<List<TodoItem>> GetItemsNotDoneAsync()
-        {
-            return database.QueryAsync<TodoItem>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
-        }
-
         public Task<TodoItem> GetItemAsync(int id)
         {
             return database.Table<TodoItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
