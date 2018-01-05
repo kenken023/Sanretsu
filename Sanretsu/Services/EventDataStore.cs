@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sanretsu
+namespace Sanretsu.Services
 {
     public class EventDataStore : IDataStore<Event>
     {
-        bool isInitialized;
         List<Event> items;
 
         public EventDataStore()

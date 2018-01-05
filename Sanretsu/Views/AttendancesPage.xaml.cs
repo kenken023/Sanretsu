@@ -34,7 +34,7 @@ namespace Sanretsu.Views
         }
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            Item item = args.SelectedItem as Item;
+            Attendance item = args.SelectedItem as Attendance;
             if (item == null)
             {
                 return;

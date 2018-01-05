@@ -38,11 +38,10 @@ namespace Sanretsu.Views
 
                     if (_isScanning)
                     {
-						MessagingCenter.Send(this, "AddItem", new Item
+						MessagingCenter.Send(this, "AddItem", new Attendance
 						{
-                            Id = result.Text,
 							Code = result.Text,
-							Text = result.Text,
+							Name = "",
 							Description = result.BarcodeFormat.ToString()
 						});
                     }

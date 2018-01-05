@@ -9,30 +9,24 @@ using Sanretsu.Views;
 
 namespace Sanretsu.ViewModels
 {
-    public class AttendancesViewModel : BaseViewModel<Item>
+    public class AttendancesViewModel : BaseViewModel<Attendance>
     {
 
-        public ObservableRangeCollection<Item> Items { get; set; }
+        public ObservableRangeCollection<Attendance> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         public AttendancesViewModel()
         {
             Title = "Attendance List";
-            Items = new ObservableRangeCollection<Item>();
+            Items = new ObservableRangeCollection<Attendance>();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-			MessagingCenter.Subscribe<AddEventPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<AddEventPage, Attendance>(this, "AddItem", async (obj, item) =>
 			{
-				var _item = item as Item;
+                var _item = item as Attendance;
 
-                var existingItem = await DataStore.GetItemAsync(_item.Id);
-
-                if (existingItem == null || existingItem.Id != _item.Id)
-                {
-                    Items.Add(_item);
-                    await DataStore.AddItemAsync(_item);
-                }
+                await DataStore.AddItemAsync(_item);
 			});
         }
 

@@ -9,20 +9,13 @@ using Xamarin.Forms;
 
 namespace Sanretsu
 {
-    public class ItemDetailViewModel : BaseViewModel<Item>
+    public class ItemDetailViewModel : BaseViewModel<Attendance>
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public Attendance Item { get; set; }
+        public ItemDetailViewModel(Attendance item = null)
         {
-            Title = item.Text;
+            Title = item.Name;
             Item = item;
-        }
-
-        int quantity = 1;
-        public int Quantity
-        {
-            get { return quantity; }
-            set { SetProperty(ref quantity, value); }
         }
     }
 }

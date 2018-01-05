@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Sanretsu.Models;
 using Sanretsu.Dependencies;
-using System;
+using Sanretsu.Services;
 
 namespace Sanretsu
 {
     public partial class App : Application
     {
         private static EventDatabase _eventDatabase;
+        private static AttendanceDatabase _attendanceDatabase;
 
         public static bool UseSqliteDataStore = true;
         public static string BackendUrl = "https://localhost:5000";
@@ -26,18 +27,12 @@ namespace Sanretsu
             {
                 DependencyService.Register<MockDataStore>();
                 DependencyService.Register<EventDataStore>();
+                DependencyService.Register<AttendanceDataStore>();
             }
             else
             {
                 DependencyService.Register<CloudDataStore>();
             }
-
-            //EventDb.SaveItemAsync(new Event() {
-            //    Id = 0,
-            //    Name = "First Event",
-            //    Description = "First Description",
-            //    DateTime = DateTime.Now
-            //});
 
             SetMainPage();
         }
@@ -109,6 +104,19 @@ namespace Sanretsu
                 }
 
                 return _eventDatabase;
+            }
+        }
+
+        public static AttendanceDatabase AttendanceDb
+        {
+            get
+            {
+                if (_attendanceDatabase == null)
+                {
+                    _attendanceDatabase = new AttendanceDatabase(DependencyService.Get<IFileHelper>().GetLocalFilePath(("Sanretsu.db3")));
+                }
+
+                return _attendanceDatabase;
             }
         }
 
