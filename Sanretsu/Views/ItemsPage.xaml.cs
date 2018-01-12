@@ -25,7 +25,7 @@ namespace Sanretsu
                 return;
             }
 
-            await Navigation.PushAsync(new AttendancesPage());
+            await Navigation.PushAsync(new AttendancesPage(item));
             ItemsListView.SelectedItem = null;
         }
 

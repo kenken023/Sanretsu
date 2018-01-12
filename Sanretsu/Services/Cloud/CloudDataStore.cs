@@ -92,5 +92,10 @@ namespace Sanretsu.Services.Cloud
 
             return response.IsSuccessStatusCode ? true : false;
         }
+
+        public Task<IEnumerable<Item>> GetItemsAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

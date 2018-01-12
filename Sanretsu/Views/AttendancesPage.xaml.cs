@@ -16,6 +16,7 @@ namespace Sanretsu.Views
 	public partial class AttendancesPage : ContentPage
 	{
         AttendancesViewModel viewModel;
+        Event myEvent;
 
 		public AttendancesPage ()
 		{
@@ -23,13 +24,19 @@ namespace Sanretsu.Views
 
             BindingContext = viewModel = new AttendancesViewModel();
         }
+
+        public AttendancesPage(Event myEvent) : this()
+        {
+            this.myEvent = myEvent;
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
             {
-                viewModel.LoadItemsCommand.Execute(null);
+                viewModel.LoadItemsCommand.Execute(myEvent);
             }
         }
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

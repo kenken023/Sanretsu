@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Newtonsoft.Json;
+using SQLite;
 
 namespace Sanretsu.Models
 {
@@ -8,7 +9,7 @@ namespace Sanretsu.Models
     {
         int id;
 
-        [JsonIgnore]
+        [PrimaryKey, AutoIncrement]
         public int Id
         {
             get { return id; }

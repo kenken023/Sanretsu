@@ -20,7 +20,7 @@ namespace Sanretsu.ViewModels
             Title = "Attendance List";
             Items = new ObservableRangeCollection<Attendance>();
 
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command<Event>(async (myEvent) => await ExecuteLoadItemsCommand(myEvent));
 
             MessagingCenter.Subscribe<AddEventPage, Attendance>(this, "AddItem", async (obj, item) =>
 			{
@@ -30,7 +30,7 @@ namespace Sanretsu.ViewModels
 			});
         }
 
-        private async Task ExecuteLoadItemsCommand()
+        private async Task ExecuteLoadItemsCommand(Event myEvent)
         {
             if (IsBusy)
             {
@@ -42,7 +42,7 @@ namespace Sanretsu.ViewModels
             try
             {
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync();
+                var items = await DataStore.GetItemsAsync(myEvent.Id);
                 Items.ReplaceRange(items);
             }
             catch (Exception ex)

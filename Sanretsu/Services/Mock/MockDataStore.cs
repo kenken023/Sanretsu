@@ -86,5 +86,10 @@ namespace Sanretsu.Services.Mock
         {
             return await Task.FromResult(events);
         }
+
+        public Task<IEnumerable<Item>> GetItemsAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
