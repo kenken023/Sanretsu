@@ -39,6 +39,7 @@ namespace Sanretsu.Services.Database
 
             return await Task.FromResult(true);
         }
+
         public async Task<Attendance> GetItemAsync(int id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
@@ -50,21 +51,10 @@ namespace Sanretsu.Services.Database
             return await Task.FromResult(items);
         }
 
-
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<IEnumerable<Attendance>> GetItemsAsync(int id)
         {
-            throw new Exception("Not implemented.");
+            items = await App.AttendanceDb.GetItemsAsync(id);
+            return await Task.FromResult(items);
         }
-
-        public async Task<Attendance> GetItemAsync(string id)
-        {
-            throw new Exception("Not implemented.");
-        }
-
-        public async Task<List<Attendance>> GetItemsAsync(string id)
-        {
-            throw new Exception("Not implemented.");
-        }
-
     }
 }

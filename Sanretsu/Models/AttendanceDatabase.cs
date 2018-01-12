@@ -20,6 +20,11 @@ namespace Sanretsu.Models
             return database.Table<Attendance>().ToListAsync();
         }
 
+        public Task<List<Attendance>> GetItemsAsync(int eventId)
+        {
+            return database.Table<Attendance>().Where(i => i.EventId == eventId).ToListAsync();
+        }
+
         public Task<Attendance> GetItemAsync(int id)
         {
             return database.Table<Attendance>().Where(i => i.Id == id).FirstOrDefaultAsync();
@@ -38,6 +43,18 @@ namespace Sanretsu.Models
         public Task<int> DeleteItemAsync(Attendance item)
         {
             return database.DeleteAsync(item);
+        }
+
+        public async Task<int> DeleteItemsByEventAsync(int eventId)
+        {
+            var items = await this.GetItemsAsync(eventId);
+
+            foreach (Attendance item in items)
+            {
+                await this.DeleteItemAsync(item);
+            }
+
+            return await Task.FromResult(0);
         }
     }
 }

@@ -49,6 +49,7 @@ namespace Sanretsu.Services.Database
             var _item = items.Where((Event arg) => arg.Id == id).FirstOrDefault();
             items.Remove(_item);
 
+            await App.AttendanceDb.DeleteItemsByEventAsync(_item.Id);
             await App.EventDb.DeleteItemAsync(_item);
 
             return await Task.FromResult(true);
@@ -64,22 +65,9 @@ namespace Sanretsu.Services.Database
             return await Task.FromResult(items);
         }
 
-
-
-        public async Task<bool> DeleteItemAsync(string id)
+        public Task<IEnumerable<Event>> GetItemsAsync(int id)
         {
-            throw new Exception("Not implemented.");
+            throw new NotImplementedException();
         }
-
-        public async Task<Event> GetItemAsync(string id)
-        {
-            throw new Exception("Not implemented.");
-        }
-
-        public async Task<List<Event>> GetItemsAsync(string id)
-        {
-            throw new Exception("Not implemented.");
-        }
-
     }
 }

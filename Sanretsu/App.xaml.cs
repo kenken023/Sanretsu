@@ -37,6 +37,39 @@ namespace Sanretsu
                 DependencyService.Register<CloudDataStore>();
             }
 
+            //AttendanceDb.SaveItemAsync(new Attendance {
+            //    Code = "00806906",
+            //    Description = "For event 1",
+            //    EventId = 1,
+            //    Name = "Fritz Salar"
+            //});
+
+
+            //AttendanceDb.SaveItemAsync(new Attendance
+            //{
+            //    Code = "SOG000026",
+            //    Description = "For event 1",
+            //    EventId = 1,
+            //    Name = "Kenken Salar"
+            //});
+
+            //AttendanceDb.SaveItemAsync(new Attendance
+            //{
+            //    Code = "00806907",
+            //    Description = "For event 2",
+            //    EventId = 2,
+            //    Name = "Lupoy"
+            //});
+
+
+            //AttendanceDb.SaveItemAsync(new Attendance
+            //{
+            //    Code = "SOG000027",
+            //    Description = "For event 2",
+            //    EventId = 2,
+            //    Name = "Kigwa"
+            //});
+
             SetMainPage();
         }
 
