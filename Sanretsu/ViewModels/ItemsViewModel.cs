@@ -11,18 +11,20 @@ namespace Sanretsu
     {
         public ObservableRangeCollection<Event> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command DeleteItemCommand { get; set; }
 
         public ItemsViewModel()
         {
             Title = "Events";
             Items = new ObservableRangeCollection<Event>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            DeleteItemCommand = new Command<Event>(async (myEvent) => await ExecuteDeleteItemCommand(myEvent));
 
             MessagingCenter.Subscribe<NewItemPage, Event>(this, "AddItem", async (obj, item) =>
             {
                 var _item = item as Event;
-                Items.Add(_item);
                 await DataStore.AddItemAsync(_item);
+                await ExecuteLoadItemsCommand();
             });
         }
 
@@ -54,6 +56,12 @@ namespace Sanretsu
             {
                 IsBusy = false;
             }
+        }
+
+        async Task ExecuteDeleteItemCommand(Event myEvent)
+        {
+            await DataStore.DeleteItemAsync(myEvent.Id);
+            await ExecuteLoadItemsCommand();
         }
     }
 }

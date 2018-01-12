@@ -9,6 +9,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <!--<MenuItem Clicked="OnMore" CommandParameter="{Binding .}"
+                                   Text="More" />-->
+                                <MenuItem Clicked="OnDelete" CommandParameter="{Binding .}"
+                                   Text="Delete" IsDestructive="True" />
+                             </ViewCell.ContextActions>
                             <StackLayout Padding="10">
                                 <Label Text="{Binding Name}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="16" />
                                 <Label Text="{Binding Description}" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="13" />

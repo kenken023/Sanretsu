@@ -11,9 +11,11 @@ namespace Sanretsu.ViewModels
 {
     public class AttendancesViewModel : BaseViewModel<Attendance>
     {
+        Event myEvent = null;
 
         public ObservableRangeCollection<Attendance> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command DeleteItemCommand { get; set; }
 
         public AttendancesViewModel()
         {
@@ -21,6 +23,7 @@ namespace Sanretsu.ViewModels
             Items = new ObservableRangeCollection<Attendance>();
 
             LoadItemsCommand = new Command<Event>(async (myEvent) => await ExecuteLoadItemsCommand(myEvent));
+            DeleteItemCommand = new Command<Attendance>(async (attendance) => await ExecuteDeleteItemCommand(attendance));
 
             MessagingCenter.Subscribe<AddEventPage, Attendance>(this, "AddItem", async (obj, item) =>
 			{
@@ -30,7 +33,7 @@ namespace Sanretsu.ViewModels
 			});
         }
 
-        private async Task ExecuteLoadItemsCommand(Event myEvent)
+        async Task ExecuteLoadItemsCommand(Event myEvent)
         {
             if (IsBusy)
             {
@@ -38,6 +41,7 @@ namespace Sanretsu.ViewModels
             }
 
             IsBusy = true;
+            this.myEvent = myEvent;
 
             try
             {
@@ -59,6 +63,12 @@ namespace Sanretsu.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        async Task ExecuteDeleteItemCommand(Attendance attendance)
+        {
+            await DataStore.DeleteItemAsync(attendance.Id);
+            await ExecuteLoadItemsCommand(myEvent);
         }
     }
 }
