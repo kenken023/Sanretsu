@@ -30,6 +30,7 @@ namespace Sanretsu.ViewModels
                 var _item = item as Attendance;
 
                 await DataStore.AddItemAsync(_item);
+                await ExecuteLoadItemsCommand(myEvent);
 			});
         }
 
