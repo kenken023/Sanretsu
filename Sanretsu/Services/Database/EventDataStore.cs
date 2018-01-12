@@ -47,13 +47,17 @@ namespace Sanretsu.Services.Database
         public async Task<bool> DeleteItemAsync(int id)
         {
             var _item = items.Where((Event arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(_item);
 
-            await App.AttendanceDb.DeleteItemsByEventAsync(_item.Id);
+            if (_item != null)
+            {
+                await App.AttendanceDb.DeleteItemsByEventAsync(_item.Id);
+            }
+
             await App.EventDb.DeleteItemAsync(_item);
 
             return await Task.FromResult(true);
         }
+
         public async Task<Event> GetItemAsync(int id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));

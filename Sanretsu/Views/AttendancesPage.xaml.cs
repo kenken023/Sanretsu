@@ -67,5 +67,11 @@ namespace Sanretsu.Views
         {
             Navigation.PushAsync(new AddEventPage());
         }
+
+        public void OnDelete(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            viewModel.DeleteItemCommand.Execute(mi.CommandParameter);
+        }
     }
 }

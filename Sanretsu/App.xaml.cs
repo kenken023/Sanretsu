@@ -62,14 +62,6 @@ namespace Sanretsu
             //});
 
 
-            //AttendanceDb.SaveItemAsync(new Attendance
-            //{
-            //    Code = "SOG000027",
-            //    Description = "For event 2",
-            //    EventId = 2,
-            //    Name = "Kigwa"
-            //});
-
             SetMainPage();
         }
 
